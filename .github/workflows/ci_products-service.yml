@@ -76,7 +76,8 @@ jobs:
         env:
           ECR_URI: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITOR }}
         run: |
-          IMAGE_TAG=$(date +%Y%m%d%H%M%S)-${{ github.ref_name }}
+          CLEAN_REF_NAME=$(echo "${{ github.ref_name }}" | sed 's|/|-|g')
+          IMAGE_TAG=$(date +%Y%m%d%H%M%S)-$CLEAN_REF_NAME
           docker build -t $ECR_URI:$IMAGE_TAG .
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 

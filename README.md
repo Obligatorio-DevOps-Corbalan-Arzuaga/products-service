@@ -1,2 +1,2 @@
 # products-service
-Flujo 5
+Flujo 6
